@@ -8,9 +8,11 @@ import { Toaster } from 'react-hot-toast'
 function Root() {
 
   return (
-    <div className='2xl:container mx-auto'>
+    <div className=''>
       <NavBar />
-      <Outlet />
+      <div className='2xl:container mx-auto'>
+        <Outlet />
+      </div>
       <Footer />
       <Toaster />
     </div>

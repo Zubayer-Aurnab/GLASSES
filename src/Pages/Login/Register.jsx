@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import useAuth from '../../Components/HOOk/useAuth';
 import toast from 'react-hot-toast';
 
 const Register = () => {
-    const { signIn } = useAuth()
+    const { signIn, UpdateUser } = useAuth()
+    const navigate = useNavigate()
 
     const handelSubmit = (e) => {
         e.preventDefault()
@@ -21,7 +22,12 @@ const Register = () => {
         signIn(email, password)
             .then(res => {
                 console.log(res);
-                toast.success('Your account has been registered')
+                UpdateUser(name, img)
+                    .then(() => {
+                        toast.success('Your account has been registered')
+                        navigate('/')
+                    })
+
             })
             .catch(err => {
                 console.log(err);
